@@ -15,7 +15,7 @@ class Scraper
 
   def make_courses
     self.get_courses.each do |course_offering|
-      if course_offering.css("h2").text.is_a? String
+      if course_offering.css("h2").text != ""
         course = Course.new
         course.title = course_offering.css("h2").text
         course.description = course_offering.css("p").text
