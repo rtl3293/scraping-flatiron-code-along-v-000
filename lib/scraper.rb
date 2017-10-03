@@ -15,10 +15,12 @@ class Scraper
 
   def make_courses
     self.get_courses.each do |course_offering|
-      course = Course.new
-      course.title = course_offering.css("h2").text
-      course.description = course_offering.css("p").text
-      course.schedule = course_offering.css(".date").text
+      if course_offering.css("h2").text.is_a? String
+        course = Course.new
+        course.title = course_offering.css("h2").text
+        course.description = course_offering.css("p").text
+        course.schedule = course_offering.css(".date").text
+      end
     end
   end
 
